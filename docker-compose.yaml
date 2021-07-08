@@ -1,15 +1,25 @@
 version: '3'
 services:
-  strapi:
-    image: strapi/strapi
-    environment:
-      DATABASE_CLIENT: mongo
-      DATABASE_NAME: 
-      DATABASE_HOST: 
-      DATABASE_PORT: 
-      DATABASE_USERNAME: 
-      DATABASE_PASSWORD: 
-    volumes:
-      - ./backend:/srv/app
+  directus:
+    container_name: directus
+    image: directus/directus:latest
     ports:
-      - '1337:1337'
+      - 8055:8055
+    volumes:
+      # By default, Directus images writes uploads to /directus/uploads
+      # Always make sure your volumes matches the storage root when using
+      # local driver
+      - ./uploads:/directus/uploads
+    environment:
+      KEY: 
+      SECRET: 
+
+      DB_CLIENT: 'mysql'
+      DB_HOST: 
+      DB_PORT: 
+      DB_DATABASE: 
+      DB_USER: 
+      DB_PASSWORD: 
+
+      ADMIN_EMAIL: 'admin@example.com'
+      ADMIN_PASSWORD: 'admin'
