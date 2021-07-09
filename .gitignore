@@ -8,3 +8,5 @@
 *logs*/
 
 docker-compose.local*
+
+uploads/
