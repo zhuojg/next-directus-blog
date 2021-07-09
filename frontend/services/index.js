@@ -1,21 +1,23 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
+import { SERVER_ERROR_MESSAGE } from '../constants'
 
 const client = new ApolloClient({
   uri: process.env.SERVICE_URL,
   cache: new InMemoryCache(),
 })
 
-export const getPodcastData = async (id) => {
+export const getTypeDataById = async (type, id) => {
   const result = await client
     .query({
       query: gql`
-      query {
-        podcasts_by_id(id: ${id}) {
-          title
-          content
-          date_created
-        }
+    query {
+      ${type}_by_id(id: "${id}") {
+        title
+        content
+        date_created
+        date_updated
       }
+    }
     `,
     })
     .then((res) => res)
@@ -24,20 +26,21 @@ export const getPodcastData = async (id) => {
   const { data } = result
 
   if (!data) {
-    return { error: 'Server Error.' }
+    return { error: SERVER_ERROR_MESSAGE }
   }
 
-  return { data: data['podcasts_by_id'] }
+  return { data: data[`${type}_by_id`] }
 }
 
-export const getAllPodcastsBasicInfo = async () => {
+export const getAllTypeBasicInfo = async (type) => {
   const result = await client
     .query({
       query: gql`
         query {
-          podcasts {
+          ${type} {
             id
             title
+            date_created
           }
         }
       `,
@@ -48,8 +51,8 @@ export const getAllPodcastsBasicInfo = async () => {
   const { data } = result
 
   if (!data) {
-    return { error: 'Server Error.' }
+    return { error: SERVER_ERROR_MESSAGE }
   }
 
-  return { data: data['podcasts'] }
+  return { data: data[type] }
 }

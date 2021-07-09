@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import Layout from '../../components/layout'
-import { getPodcastData } from '../../lib/podcasts'
+import { getTypeDataById } from '../../services'
 
 export const getServerSideProps = async ({ params }) => {
-  const { data, error } = await getPodcastData(params.id)
+  const { data, error } = await getTypeDataById('podcasts', params.id)
 
   if (!!error) {
     return { props: { error: error } }
@@ -34,6 +34,7 @@ const Podcast = ({ data, error }) => {
             <title>{data.title}</title>
           </Head>
           <div className="text-5xl">{data.title}</div>
+          <div className="font-mono mt-4">{data.date_created}</div>
           <div
             className="mt-4"
             dangerouslySetInnerHTML={{ __html: data.content }}
