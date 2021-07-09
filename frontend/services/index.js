@@ -10,15 +10,15 @@ export const getTypeDataById = async (type, id) => {
   const result = await client
     .query({
       query: gql`
-    query {
-      ${type}_by_id(id: "${id}") {
-        title
-        content
-        date_created
-        date_updated
-      }
-    }
-    `,
+        query {
+          ${type}_by_id(id: "${id}") {
+            title
+            content
+            date_created
+            date_updated
+          }
+        }
+      `,
     })
     .then((res) => res)
     .catch((err) => err)
