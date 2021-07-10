@@ -1,5 +1,4 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
-import { SERVER_ERROR_MESSAGE } from '../constants'
 
 const client = new ApolloClient({
   uri: process.env.SERVICE_URL,
@@ -26,7 +25,7 @@ export const getTypeDataById = async (type, id) => {
   const { data } = result
 
   if (!data) {
-    return { error: SERVER_ERROR_MESSAGE }
+    return { error: 'SERVER_ERROR_MESSAGE' }
   }
 
   return { data: data[`${type}_by_id`] }
@@ -51,7 +50,7 @@ export const getAllTypeBasicInfo = async (type) => {
   const { data } = result
 
   if (!data) {
-    return { error: SERVER_ERROR_MESSAGE }
+    return { error: 'SERVER_ERROR_MESSAGE' }
   }
 
   return { data: data[type] }

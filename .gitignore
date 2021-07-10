@@ -5,8 +5,8 @@
 .DS_Store
 
 # logs
-*logs*/
+*logs*
 
-docker-compose.local*
+*local*
 
 uploads/
