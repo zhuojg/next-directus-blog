@@ -11,6 +11,7 @@ services:
     envrionment:
       NODE_ENV: development
       SERVICE_URL: http://directus:8055/graphql
+    restart: on-failure
 
   directus:
     container_name: directus
@@ -35,3 +36,4 @@ services:
 
       ADMIN_EMAIL: "admin@example.com"
       ADMIN_PASSWORD: "admin"
+    restart: on-failure

@@ -1,5 +1,6 @@
-# Super Imagination | 特有想象力
+# Blog Framework with Server-side Render and Headless CMS  
 
+![license badge](https://img.shields.io/github/license/zhuojg/next-directus-blog?style=flat-square)
 ## Setup
 
 ### Development  
@@ -28,7 +29,7 @@ docker-compose up -d
 
 ## Tech  
 
-### Directus [ Headless CMS | 内容管理系统 ]
+### Directus [ Headless CMS ]
 
-### NextJS [ SSR | 服务端渲染 ]
+### NextJS [ React Framework for SSR ]
 
